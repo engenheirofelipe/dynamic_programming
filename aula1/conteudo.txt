@@ -1,0 +1,35 @@
+Programação Dinâmica
+
+- Estrutura de dados : Lista, pilha, árvore binárias, fila
+
+    Lista sequencial : Lista estática, não muda a lista. Imutável
+
+    Fila : Envolve algoritmos da area de grafos para percorrer estrutura. Por exemplo, resolver problemas de custo mínimo
+
+    Pilha : Verificar se uma expressão está correta ou não.
+
+    Árvores binárias : O primeiro elemento é a raiz. 
+
+- Algorítmos de ordenação
+
+    V[i] < V[j]
+
+    Insertion :
+    Selection :
+    Bubble :
+
+    *Não esxiste sobreposição de problemas
+    Mergesort :
+    Quicksort :
+
+- Algorítmos de busca
+
+    Busca sequencial : 
+    Busca binária : Vetor que tenha uma ordenação para fazer uma busaca mais rápida. Ao invés de varrer faz a busca binária. Sempre calcula primeiro o meio da lista.
+
+- Técnicas de Algorítmos
+
+    Algoritmos gulosos : Monta a solução de acordo com inserir elementos novos em uma lista não necessariamente vazia. Então vai ter uma lista para solução  e vai ser colocado um elemento , e a ideia é ele nunca mais sair de lá.
+    Programação dinâmica : 
+
+

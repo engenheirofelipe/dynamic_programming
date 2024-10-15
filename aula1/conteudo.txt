@@ -33,3 +33,350 @@ Programação Dinâmica
     Programação dinâmica : 
 
 
+
+CODIGO SWITCH 
+
+// Criando variáveis
+// As variáveis sao tipadas
+
+var nome: String = "Felipe"
+var idade: Int = 21
+print(idade)
+
+// Interpolacao, imprimir uma variável depois de um texto
+print("Meu nome é :  \(nome)")
+
+// Variável let é constante e nao pode ter valor alterado.
+let altura: Double = 1.75
+print("A minha altura é \(altura)")
+
+var coeficienteRendimento: Double = 9.5
+var possuiHistoricoReprovacao: Bool
+possuiHistoricoReprovacao = false
+
+var turnoEmQueEstuda: Character = "D"
+
+// Type alias
+typealias Estudante = String
+var aluno1: Estudante = "Joao"
+var aluno2: Estudante = "Ana"
+
+// Operacoes artmeticas e de atribuicao
+
+10 + 2
+10 - 2
+8 * 2
+5 / 3
+5.0 / 2
+4 % 2
+// Segue a ordem, primeiro vem a multiplicacao
+5 + 2 * 7
+// Faz a adicao primeiro
+(5 + 2) * 10
+
+var numero1: Int = 50
+var numero2: Int = 100
+var soma = numero1 + numero2
+print(soma)
+
+numero1 +=  2
+print(numero1)
+
+
+var Primeironome = "Felipe"
+var sobrenome = "Casquet"
+print("Meu nome é \(Primeironome) \(sobrenome)")
+
+
+// Operadores relacionais e lógico
+// Aplicativo que armazena pontuacao de usuarios
+
+var pontuacao1 = 8.0
+var pontuacao2 = 10.0
+// Saber se uma pontuacao é maior que outra : Operadores relacionais
+
+// Primeiro operador relacional >
+pontuacao1 > pontuacao2
+pontuacao1 <= pontuacao2
+pontuacao1 < pontuacao2
+pontuacao1 <= pontuacao2
+pontuacao1 == pontuacao2
+pontuacao1 != pontuacao2
+
+var usuarioVenceu = pontuacao2 > pontuacao1
+
+// Operadores logicos para verificar se a pessoa pode dirigir
+var idadePessoa = 21
+// Ser maior que 18
+var adulto = idadePessoa >= 18
+// Possui CNH
+var possuiCnhValida = true
+// Para dirigir é preciso ser adulto e ter cnh.
+var podeDirigir = adulto && possuiCnhValida
+// Inverte o estado do booleano
+!adulto
+
+
+// Condicionais if elseif else
+// Exemplo da carteira cnh
+
+var idadeMotorista = 15
+
+if idadeMotorista >= 18 {
+    
+    print("Pode iniciar processo de tirar carta")
+    
+}else{
+    
+    print("Nao pode tirar carta")
+    
+}
+
+var possuiCnhvalida = true
+
+if idade >= 18 && possuiCnhvalida{
+    
+    print("Pode dirigir")
+    
+}else {
+    
+    print("Nao pode dirigir")
+    
+}
+
+var num1 = 5
+var num2 = 10
+
+if num2 > num1{
+    
+    print("Número 2 é maior que numero 1")
+    
+} else if num1 > num2 {
+    
+    print("Numero 1 é maior que numero 2")
+} else {
+    
+    print("Numero 1 é igual a numero 2")
+}
+
+
+// Intervalos de valores
+// Intervalo fechado e semiaberto
+
+var intervaloFechado = 10...20 // 20 esta incluso
+var intervaloSemiAberto = 10..<20 // 20 nao esta incluso
+
+var numero = 20
+
+// Switch case para verificar se o numero 25 esta no intervalo entre 0 e 10
+switch numero {
+    
+case 0...10: print("Numero esta entre 0 e 10")
+case 10...20: print("Numero esta entre 10 e 20")
+default: print("Numero é maior que 20")
+    
+}
+
+// Utilizando Switch case para verificar  multiplos valores
+
+var animal = "Cachorro"
+
+switch animal {
+    
+case "Cachorro", "Gato": print("Animal domestico")
+default: print("Animal selvagem")
+    
+}
+
+// Utilizando switch para verificar se o numero e par ou impar
+
+switch numero {
+   
+    case let x where x % 2 == 0: print("Numero \(x) é par")
+    case let x where x % 2 != 0: print("Numero \(x) é impar")
+    default: break
+    
+}
+
+// Lacos de repeticao. For while Repeat while
+
+/*for i in 1...10{
+    
+    print(i)
+    
+}*/
+
+var count = 11
+
+/*while count <= 10 {
+    print("Eu gosto de switch")
+    count += 1
+}*/
+
+repeat{
+    print("Eu gosto de switch")
+} while count <= 10
+
+
+var somaIntervalo = 0
+
+for i in 1...10{
+    
+    somaIntervalo += i
+    
+}
+
+print(somaIntervalo)
+
+// Utilizando break e continue
+var count1 = 1
+
+while count1 <= 10 {
+    count1 += 1
+    if count1 == 5 {
+        break
+    }
+    print(count1)
+}
+
+var count2 = 1
+
+while count2 <= 10 {
+    count2 += 1
+    if count2 == 5 {
+        continue
+    }
+    print(count2)
+}
+
+
+// Conceito de funcao. Bloco de codigo que executa uma tarefa
+// Funcao para somar dois numeros
+
+func somaFunc(_ numeroUm:Int, _ numeroDois:Int) -> Int{
+    var resultado = numeroUm + numeroDois
+    return resultado
+}
+
+var somaRetorno = somaFunc(5, 3)
+print(somaRetorno)
+
+// Verificar se a pessoa é adulta
+
+func verificaAdulto(_ idade:Int) -> Bool{
+    
+    return idade >= 18
+    
+}
+
+var verificar = verificaAdulto(21)
+print(verificar)
+
+
+// Entendo opcionais
+
+var telefone: String?
+telefone = "999"
+
+if telefone != nil{
+    print(telefone!)
+}
+
+var celular: String?
+celular = "88888"
+
+if let telefone = telefone, let celular = celular{
+    print(telefone)
+    print(celular)
+}
+
+
+func autenticar(usuario: String?, senha: String?){
+    
+    guard let usuario = usuario, let senha = senha
+    else { return }
+    print(usuario)
+    print(senha)
+}
+
+autenticar(usuario: "felipe", senha:nil)
+
+
+if let primeiroCaractere = telefone?.first {
+    print(primeiroCaractere)
+}
+
+print(telefone ?? "Nao tem valor para telefone")
+
+// Arrays
+
+var notas: [Double] = [8.5,9.0,7.2,6.0]
+
+// Array vazio
+
+var arrayVazio = Array<String>()
+
+notas.isEmpty
+arrayVazio.isEmpty
+
+notas.count
+notas.min()
+notas.max()
+notas.contains(4.0)
+notas.firstIndex(of: 10.0)
+
+notas.append(10)
+notas.insert(5.0, at: 2)
+notas += [8.2]
+print(notas)
+
+var elementoRemovido = notas.removeFirst()
+print(elementoRemovido)
+print(notas)
+
+for nota in notas {
+    print(nota)
+}
+
+
+// Sets, tipo de dado desordenado
+
+var nomes: Set<String> = ["felipe", "caio", "giovana"]
+
+nomes.contains("felipe")
+nomes.insert("carla")
+
+
+// Tuplas
+
+/*typealias Coordenadas = (x: 5, y: 3.5, z: 8.0)
+var coordenadas: (Int, Double) = (x: 5, y: 3.5, z: 8.0)
+coordenadas.x
+coordenadas.y
+coordenadas.z
+
+var pessoa = (nome: "felipe", idade:21)
+pessoa.nome
+pessoa.idade
+
+var (_nome, _idade) = pessoa
+print(pessoa)*/
+
+var pontuacao = [
+    "joao":20,
+    "felipe":21,
+    "gilson":20
+]
+
+var pessoas: [String: Int] = [:]
+pessoas.reserveCapacity(10)
+
+print(pontuacao["felipe"])
+pontuacao["gui"] = 30
+print(pontuacao)
+
+
+
+
+
+

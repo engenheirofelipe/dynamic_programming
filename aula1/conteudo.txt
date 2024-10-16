@@ -377,6 +377,457 @@ print(pontuacao)
 
 
 
+CURSO 2
+
+import UIKit
+
+// Uma opcional pode conter ou nao conter um valor
+
+// Caso menos seguro
+var nome:String?
+nome = "Felipe"
+print(nome!)
+
+
+// É preciso desembrulhar um opcional que tem valor para verificar se realmente a variável nao tem um valor vazio
+
+// Caso mais seguro
+var nome2:String?
+nome2 = "Leticia"
+
+if nome2 != nil {
+    print(nome2!)
+}
+
+// Metodo binding, bordagem mais segura para desembrulhar uma opcional
+
+var nomeAluno:String?
+nomeAluno = "Felipe"
+
+if let nome = nomeAluno{
+    print(nome)
+}
+
+// Utilizandi multiplas opcionais dentro de uma condicao
+
+var nomeProfessor:String?
+var nomeProfessora:String?
+nomeProfessor = "Francisco"
+nomeProfessora = "Liliane"
+
+if let nomeMulher = nomeProfessora, let nomeHomem = nomeProfessor{
+    print(nomeMulher)
+    print(nomeHomem)
+}
+
+
+// Optional Chaining
+// O código roda apenas se a opcional possuir de fato um valor
+
+var nomeCarol:String?
+nomeCarol = "Carol"
+print(nomeCarol?.first)
+
+
+// Combinando optional binding com optional changing
+
+var nomeMarcelo:String?
+nomeMarcelo = "Marcelo"
+
+if let primeiraLetra = nomeMarcelo?.first{
+    print(primeiraLetra)
+}
+
+
+// Guard let
+//Parecido com o optional binding porem se a opcional for nula , retorna algo
+
+func autenticar(nome:String?, senha:String?){
+    guard let nomeN = nome, let senhaS = senha else { return }
+    print(nomeN)
+    print(senhaS)
+}
+
+autenticar(nome:"Felipe", senha:"felipe123")
+
+// Nil coalescing operator
+
+// Ele aceita uma expressão à esquerda, que é a variável opcional, e uma expressão à direita, que é o valor que tomará lugar caso a variável opcional for nil.
+
+var nomeCoordenador:String?
+nomeCoordenador = "Allen"
+print(nomeCoordenador ?? "Inexistente")
+
+
+// Orientacao a objetos
+
+
+// Structs
+
+struct ContaCorrente{
+    
+    var saldo = 0.0 // Atributo
+    var nome: String
+    
+    mutating func sacar(_ valor:Double){ // Metodo multating faz o atributo poder ser alterado
+        
+        saldo -= valor
+    }
+    
+    mutating func depositar(_ valor:Double){
+        
+        saldo += valor
+        
+    }
+}
+
+// Instanciando a classe
+
+var contaCorrenteFelipe = ContaCorrente(nome:  "Felipe")
+print(contaCorrenteFelipe.saldo)
+contaCorrenteFelipe.depositar(3000)
+print(contaCorrenteFelipe.saldo)
+
+var contaCorrenteCaio = ContaCorrente(nome:  "Eitor")
+contaCorrenteCaio.depositar(200)
+print(contaCorrenteCaio.saldo)
+contaCorrenteCaio.sacar(50)
+print(" Saldo disponível de Caio : \(contaCorrenteCaio.saldo)")
+
+
+// Classes. Nao precisa da palavra mutating . Precisa definir um construtor
+
+
+class ContaCorrenteDois{
+    
+    var saldo: Double // Atributo
+    var nome: String
+    
+     func sacar(_ valor:Double){
+        
+        saldo -= valor
+    }
+    
+     func depositar(_ valor:Double){
+        
+        saldo += valor
+        
+    }
+    
+    init(nome:String){
+        
+        saldo = 0.0
+        self.nome = nome
+    }
+}
+
+// Instanciando a classe
+
+var contaCorrenteBreno = ContaCorrenteDois(nome:  "Breno")
+print(contaCorrenteBreno.saldo)
+contaCorrenteBreno.depositar(5000)
+print("saldo disponivel de breno : \(contaCorrenteBreno.saldo)")
+
+var contaCorrenteItamar = ContaCorrenteDois(nome:  "Itamar")
+contaCorrenteItamar.depositar(20000)
+print(contaCorrenteItamar.saldo)
+contaCorrenteItamar.sacar(50)
+print(" Saldo disponível de itamar : \(contaCorrenteItamar.saldo)")
+
+
+// Classes possui um contexto chamado Heranca
+
+// Heranca
+
+class ContaBancaria{
+    
+    var saldoConta = 0.0
+    
+    var nomeProprietario:String
+    
+    func sacarValor(_ valorConta:Double){
+        
+        saldoConta -= valorConta
+        
+    }
+    
+    func depositarValor(_ valorConta:Double){
+        
+        saldoConta += valorConta
+        
+    }
+    
+    
+    init(nomeProprietario:String){
+        self.nomeProprietario = nomeProprietario
+    }
+}
+
+// criando subclasse
+class ContaBancariaPoupanca: ContaBancaria{
+    
+    var possuiCartaoDebito: Bool
+    
+    func solicitarCartaoDebito(){
+        
+        possuiCartaoDebito = true
+        print("Solicitando cartao debito")
+    }
+    
+    override func sacarValor(_ valorConta:Double){
+        
+        saldoConta -= valorConta + 10
+        
+    }
+    
+    init(nomeProprietario:String, possuiCartaoDebito: Bool){
+        self.possuiCartaoDebito = possuiCartaoDebito
+        super.init(nomeProprietario: nomeProprietario )
+    }
+    
+}
+// instanciando subclasse
+var contaBancariaPoupanca =  ContaBancariaPoupanca(nomeProprietario: "Felipe", possuiCartaoDebito: true)
+contaBancariaPoupanca.depositarValor(1900.0)
+contaBancariaPoupanca.sacarValor(400)
+print(contaBancariaPoupanca.saldoConta)
+contaBancariaPoupanca.solicitarCartaoDebito()
+
+// criando subclasse
+class ContaBancariaCorrente: ContaBancaria {
+    
+    func pedirEmprestimo(_ valorEmprestimo:Double){
+        
+        print(" O cliente esta pedindo um emprestimo no valor de \(valorEmprestimo)")
+        
+        super.depositarValor(valorEmprestimo) // Super . Chamar um metodo da classe pai na clsse filha
+        
+    }
+    
+    override func sacarValor(_ valorConta: Double) {
+        
+        saldoConta -= valorConta + 10
+        
+    }
+    
+}
+// instanciando subclasse
+var contaBancariaCorrente = ContaBancariaCorrente(nomeProprietario: "Felipe")
+contaBancariaCorrente.depositarValor(1700)
+contaBancariaCorrente.sacarValor(300)
+print(contaBancariaCorrente.saldoConta)
+contaBancariaCorrente.pedirEmprestimo(50000)
+print(contaBancariaCorrente.saldoConta)
+
+// Polimorfismo
+
+func exibeSaldoDaConta(_ conta: ContaBancaria){
+    
+    if conta is ContaBancariaCorrente{
+        print("Conta do tipo corrente")
+    }
+    
+    if let contaBancariaCorrente = conta as? ContaBancariaCorrente{
+        contaBancariaCorrente.pedirEmprestimo(600)
+    }
+    
+    guard let contaBancariaPoupanca = conta as? ContaBancariaPoupanca else { return }
+    
+    print(contaBancariaPoupanca.possuiCartaoDebito)
+    
+}
+
+exibeSaldoDaConta(contaBancariaCorrente)
+exibeSaldoDaConta(contaBancariaPoupanca)
+
+
+// Propriedades armazenadas, computadas e estaticas
+
+class ContaNubank{
+    // armazenada
+    var saldo = 0.0 {
+        willSet{
+            print(" O saldo esta sendo alterado, seu novo valor é \(newValue)")
+        }
+        
+        didSet{
+            print(" O valor antigo é \(oldValue)")
+        }
+    }
+    var nome:String
+    // computada.Realiza calculo. precisa ter o tipo de forma explicita
+    var negativado: Bool{
+        return saldo < 0
+    }
+    
+    static var taxaTransferencia = 0.1
+    
+    func sacar(_ valor:Double){
+        saldo -= valor
+    }
+    
+    func depositar(_ valor:Double){
+        saldo += valor
+    }
+    
+    func transferir(_ contaDestino: ContaNubank, _ valor:Double){
+        sacar(valor)
+        contaDestino.depositar(valor)
+    }
+    
+    init(nome:String){
+        self.nome = nome
+    }
+    
+}
+// extensao
+/*extension ContaNubank {
+    func transferir(_ contaDestino: ContaNubank, _ valor:Double){
+        sacar(valor)
+        contaDestino.depositar(valor)
+    }
+}*/
+
+func  contaCaracteresString(_ texto:String) -> Int{
+    return texto.count
+}
+
+
+
+let texto = "Felipe"
+contaCaracteresString(texto)
+
+var contaCorrenteNubank = ContaNubank(nome: "Felipe")
+contaCorrenteNubank.depositar(5000)
+print(contaCorrenteNubank.saldo)
+contaCorrenteNubank.negativado
+
+var contaCorrenteBrasil = ContaNubank(nome: "Itamar")
+contaCorrenteNubank.transferir(contaCorrenteBrasil, 1000)
+print(contaCorrenteNubank.saldo)
+print(contaCorrenteBrasil.saldo)
+
+// protocolos
+
+protocol Tesouro {
+    var saldo:Double { get set }
+    
+    func sacar(_ valor:Double)
+    func depositar(_ valor:Double)
+}
+
+class TesouroCorrente: Tesouro {
+    var saldo: Double
+    
+    func sacar(_ valor: Double) {
+        saldo -= valor
+    }
+    
+    func depositar(_ valor: Double) {
+        saldo += valor
+    }
+    
+    init(){
+        saldo = 0.0
+    }
+    
+}
+
+// enumeracoes , raw value
+enum FormaDePagamento{
+    case pix
+    case boleto
+    case saldoEmConta
+}
+
+enum ResultadoSaque{
+    case sucesso(novoValor: Double)
+    case falha(erro:String)
+}
+
+
+class Banco{
+    var saldo = 0.0
+    var nome: String
+    
+    func sacar(_ valor:Double) -> ResultadoSaque{
+        if valor > saldo{
+            return .falha(erro: "O valor é maior que o seu saldo")
+        }else {
+            saldo -= valor
+            return .sucesso(novoValor:saldo)
+        }
+        saldo -= valor
+    }
+    
+    func depositar(_ valor:Double){
+        saldo += valor
+    }
+    
+    func pagamentoCartao(_ tipoPagamento: FormaDePagamento){
+        switch tipoPagamento{
+        case .pix:print(" Pagamento sera efetuado por pix")
+        case .boleto:print(" O pagamento sera efetuado por boleto")
+        case .saldoEmConta:print(" O paga,ento sera efetuado por saldo em conta")
+        }
+    }
+    
+    init(nome:String){
+        self.nome = nome
+    }
+}
+
+var  bancoFelipe = Banco(nome:"Felipe")
+bancoFelipe.pagamentoCartao(.pix)
+bancoFelipe.depositar(500)
+let resultado = bancoFelipe.sacar(100)
+
+switch resultado {
+    
+case .sucesso(let novoValor):
+    print("saque sucesso \(novoValor)")
+    
+case .falha(let erro):
+    print(erro)
+}
+
+enum Mes:Int {
+    case janeiro, fevereiro, marco,abril,maio,junho,julho, agosto,setembro,outubro,novembro,dezembro
+}
+
+var janeiro = Mes.janeiro
+print(janeiro.rawValue)
+
+var fevereiro:Mes = .fevereiro
+print(fevereiro.rawValue)
+
+enum Moeda: Double {
+    case umCentavo = 0.01
+    case cincoCentavos = 0.05
+    case dezCentavos = 0.1
+    case vinteCincoCentavos = 0.25
+    case cinquentaCentavos = 0.50
+}
+
+var umcentavo = Moeda.umCentavo
+print(umcentavo.rawValue)
+
+// Associated values. lidar com caso de sucesso para algo valido e fracasso para algo nao valido.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

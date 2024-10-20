@@ -1,0 +1,144 @@
+% Descrição - - - - - - - - - - - - - - - - - - - - - - - - - - - - - %
+% Arquivo com a lista de exercícios sobre as estruturas de dados      %
+% lista, fila e pilha                                                 %
+
+
+% Classe do documento - - - - - - - - - - - - - - - - - - - - - - - - %
+\documentclass[12pt, a4paper]{article}
+
+
+% Preâmbulo - - - - - - - - - - - - - - - - - - - - - - - - - - - - - %
+% inclusão de pacotes %
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[colorlinks = true]{hyperref}
+\usepackage[left = 2.5cm, right = 2.5cm]{geometry}
+\usepackage{exsheets}
+\usepackage{minted}
+
+% configuração do título
+\author{Gabriel Sobral}
+\title{Dynamic Programming\\Lista de Exercícios\\Estrutura de Dados}
+
+% configurações do pacotes exshets %
+\SetupExSheets[question]{
+  type = exam
+}
+
+\SetupExSheets[points]{
+  name = ponto/s,
+  number-format = \color{red}
+}
+
+\SetupExSheets{solution/print=true}
+
+
+% Documento Principal - - - - - - - - - - - - - - - - - - - - - - - - %
+\begin{document}
+\maketitle
+
+\begin{question}
+Dados uma lista de inteiros ordenada $L$ e um inteiro $x$, implemente:
+\begin{enumerate}[label = (\alph*)]
+  \item uma função que insere $x$ mantendo $L$ ordenada
+  \item uma função que remove $x$ mantendo $L$ ordenada
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+\inputminted[firstline=10,lastline=22]{python}{codigos/insere_ordenado.py}
+\inputminted[firstline=9,lastline=35]{python}{codigos/remove_ordenado.py}
+\end{solution}
+
+
+\begin{question}
+Dados duas listas $L_1$ e $L_2$ com a mesma quantidade de elementos
+(\mintinline{python}{len(L1) == len(L2)}), crie uma terceira $L_3$
+mesclando as listas $L_1$ e $L_2$. Ou seja, o primeiro elemento de
+$L_3$ é o primeiro elemento de $L_1$, o segundo elemento de $L_3$ é o
+segundo elemento de $L_2$ e assim por diante.
+\end{question}
+
+\begin{solution}
+\inputminted[firstline=10,lastline=23]{python}{codigos/mescla_lista.py}
+\end{solution}
+
+
+\begin{question}
+Em python, crie uma pilha e execute as seguintes operações:
+\begin{enumerate}
+  \item push/empilha 2
+  \item push/empilha 3
+  \item push/empilha 5
+  \item remove/pop um elemento da pilha
+  \item remove/pop um elemento da pilha
+  \item push/empilha 1
+Escreva os elementos que estão na pilha, do base para o topo.
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+\inputminted{python}{codigos/pilha_operacoes.py}
+\end{solution}
+
+
+\begin{question}
+Dado uma lista $L$, utilize uma pilha (como uma estrutura de dados
+auxiliar) para inverter a ordem dos elementos de $L$.
+\end{question}
+
+\begin{solution}
+\inputminted[firstline=12,lastline=28]{python}{codigos/inverte_lista.py}
+\end{solution}
+
+\begin{question}
+Implemente um função em python que transfere os elementos de uma pilha
+$P$ para outra pilha $T$, mantendo a ordem dos elementos de $P$.
+\end{question}
+
+\begin{solution}
+\inputminted[firstline=11,lastline=28]{python}{codigos/reverte_fila.py}
+\end{solution}
+
+
+\begin{question}
+Em python, crie uma fila e execute as seguintes operações:
+\begin{enumerate}
+  \item insere o 2 na fila
+  \item insere o 5 na fila
+  \item remove um elemento da fila
+  \item insere o 3 na fila
+  \item insere o 4 da fila
+  \item remove um elemento da fila
+Escreva os elementos que estão na fila, do início para o fim.
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+\inputminted{python}{codigos/fila_operacoes.py}
+\end{solution}
+
+\begin{question}
+Dado uma fila $P$, escreva uma função em python que retorna uma fila
+com os elementos de $P$ na ordem invertida. Por exemplo, se $P =
+(1,2,3,4)$, então a função retorna uma fila com os elemento
+$(4,3,2,1)$. Você pode usar o pilha para inverter a ordem dos elementos.
+\end{question}
+
+\begin{solution}
+\inputminted[firstline=11,lastline=28]{python}{codigos/reverte_fila.py}
+\end{solution}
+\end{document}
+
+
+%% Local Variables:
+%% eval: (auto-fill-mode)
+%% eval: (set-fill-column 71)
+%% eval: (ispell-change-dictionary "brasileiro")
+%% eval: (flyspell-mode)
+%% End:
